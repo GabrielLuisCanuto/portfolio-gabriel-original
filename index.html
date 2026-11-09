@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gabriel Luis | Sites, lojas online e sistemas</title>
+<meta name="description" content="Gabriel Luis cria sites, lojas online e sistemas para empresas locais e ajuda negócios a aparecer no Google.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070b10; --bg2:#0c131b; --line:#1b2a36; --text:#e6f1f2; --muted:#7f95a3; --accent:#35e0c2; --accent-ink:#04100d; --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif; --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--text);font:400 1.0625rem/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{width:min(1120px,100% - 2.5rem);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);line-height:1.1;letter-spacing:-.02em;font-weight:700}
+h2{font-size:clamp(2rem,4.5vw,3rem);margin-bottom:2.5rem;max-width:18ch}
+section{padding:6.5rem 0}
+
+/* barra de progresso + header */
+#progress{position:fixed;top:0;left:0;height:2px;width:100%;background:var(--accent);transform-origin:0 50%;transform:scaleX(0);z-index:60}
+header{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,backdrop-filter .3s,border-color .3s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(7,11,16,.78);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:700 1.3rem var(--display);letter-spacing:-.03em}
+.logo span{color:var(--accent)}
+.links{display:flex;gap:1.75rem;list-style:none;padding:0}
+.links a{font:400 .85rem var(--mono);color:var(--muted);transition:color .2s}
+.links a:hover,.links a.on{color:var(--text)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.4rem;border-radius:999px;font-weight:500;border:1px solid var(--line);transition:transform .25s var(--ease),background .25s,border-color .25s}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.btn.main{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.main:hover{background:#7af0dc;box-shadow:0 0 28px -6px var(--accent)}
+.menu{display:none;background:none;border:0;color:var(--text);font:inherit;cursor:pointer;padding:.5rem}
+
+/* hero */
+.hero{min-height:100vh;display:flex;align-items:center;padding:7rem 0 4rem;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(520px circle at var(--mx,70%) var(--my,30%),rgba(53,224,194,.12),transparent 70%);pointer-events:none}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:4rem;align-items:center;position:relative}
+.hero h1{font-size:clamp(2.6rem,6.2vw,4.8rem);margin-bottom:1.5rem}
+.hero h1 .l{display:block;overflow:hidden}
+.hero h1 .l i{display:block;font-style:normal;transform:translateY(105%);animation:up .9s var(--ease) forwards}
+.hero h1 .l:nth-child(2) i{animation-delay:.12s}.hero h1 .l:nth-child(3) i{animation-delay:.24s}
+.hero p.lead{color:var(--muted);max-width:52ch;margin-bottom:2.2rem;opacity:0;animation:fade .8s .55s forwards}
+.hero .cta{display:flex;gap:.9rem;flex-wrap:wrap;opacity:0;animation:fade .8s .7s forwards}
+.photo{aspect-ratio:4/5;border-radius:16px;overflow:hidden;position:relative;background:var(--bg2);border:1px solid var(--line);opacity:0;animation:fade 1s .4s forwards}
+.photo img{width:100%;height:100%;object-fit:cover}
+@keyframes up{to{transform:none}}
+@keyframes fade{to{opacity:1}}
+
+/* clima futurista */
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(53,224,194,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(53,224,194,.05) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse at 50% 0%,#000 15%,transparent 72%);mask-image:radial-gradient(ellipse at 50% 0%,#000 15%,transparent 72%)}
+h2[data-n]::before{content:attr(data-n);display:block;font:500 .85rem var(--mono);color:var(--accent);margin-bottom:.9rem}
+.eyebrow{font:400 .9rem var(--mono);color:var(--accent);margin-bottom:1.4rem;min-height:1.5em}
+.cur{display:inline-block;width:.55em;height:1.05em;background:var(--accent);vertical-align:-.15em;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.photo::after{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);box-shadow:0 0 18px var(--accent);animation:scan 4.5s linear infinite}
+@keyframes scan{0%{top:0;opacity:0}10%,90%{opacity:.85}100%{top:100%;opacity:0}}
+.term{border:1px solid var(--line);border-radius:14px;background:#05090d;font:400 .95rem/2 var(--mono);overflow:hidden;max-width:820px}
+.term .bar{display:flex;align-items:center;gap:.45rem;padding:.75rem 1rem;border-bottom:1px solid var(--line);color:var(--muted);font-size:.8rem}
+.term .bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.term .bar span{margin-left:.6rem}
+.term .tb{padding:1.1rem 1.4rem 1.3rem}
+.term .ln{opacity:0;transform:translateX(-10px);transition:opacity .5s,transform .5s var(--ease)}
+.rv.in .term .ln{opacity:1;transform:none}
+.term .ok{color:var(--accent)}.term .dim{color:var(--muted)}
+.term-note{color:var(--muted);max-width:60ch;margin-bottom:2rem}
+
+/* serviços */
+.services{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.service{padding:2rem 2rem 2.5rem 0;border-right:1px solid var(--line);transition:background .3s}
+.service:not(:first-child){padding-left:2rem}
+.service:last-child{border-right:0}
+.service h3{font-size:1.4rem;margin-bottom:.7rem}
+.service p{color:var(--muted);font-size:1rem}
+
+/* sobre */
+.about{background:var(--bg2);border-block:1px solid var(--line)}
+.about .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:4rem;align-items:center}
+.about .pic{aspect-ratio:1;border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.about .pic img{width:100%;height:100%;object-fit:cover}
+.about p{color:var(--muted);margin-bottom:1.1rem;max-width:60ch}
+.facts{display:flex;gap:2.5rem;margin-top:2rem;flex-wrap:wrap}
+.facts b{display:block;font:700 1.6rem var(--display)}
+.facts span{color:var(--muted);font-size:.95rem}
+
+/* habilidades */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line)}
+.sk{padding:2rem 2rem 2.5rem 0;border-right:1px solid var(--line)}
+.sk:not(:first-child){padding-left:2rem}
+.sk:last-child{border-right:0}
+.sk h3{font-size:1.3rem;margin-bottom:.4rem}
+.sk>p{color:var(--muted);font-size:.98rem;margin-bottom:1.3rem}
+.chips{display:flex;flex-wrap:wrap;gap:.7rem;perspective:700px}
+.chip{display:inline-flex;align-items:center;gap:.7rem;padding:.55rem 1.05rem .55rem .65rem;border:1px solid var(--line);border-radius:10px;background:var(--bg2);font-size:.95rem;transform-style:preserve-3d;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;will-change:transform}
+.chip:hover{border-color:var(--accent);box-shadow:0 14px 28px -12px rgba(0,0,0,.6)}
+.ic{display:grid;place-items:center;width:38px;height:38px;border-radius:8px;background:var(--bg);border:1px solid var(--line);transform:translateZ(18px);transform-style:preserve-3d}
+.ic img{width:26px;height:26px;object-fit:contain;filter:drop-shadow(0 4px 5px rgba(0,0,0,.55));transform:translateZ(10px)}
+
+/* projetos */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.proj{text-align:left;background:var(--bg2);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;color:inherit;font:inherit;padding:0;transition:transform .35s var(--ease),border-color .3s}
+.proj:hover{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 0 34px -14px var(--accent)}
+.thumb{aspect-ratio:16/10;overflow:hidden;position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.proj:hover .thumb img{transform:scale(1.04)}
+.thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font:700 2.4rem var(--display);color:rgba(255,255,255,.85)}
+.info{padding:1.4rem 1.6rem 1.7rem}
+.info h3{font-size:1.35rem;margin-bottom:.4rem}
+.info p{color:var(--muted);font-size:.98rem;margin-bottom:1rem}
+.tags{display:flex;gap:.5rem;flex-wrap:wrap}
+.tags span{font:400 .78rem var(--mono);padding:.2rem .7rem;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+dialog{margin:auto;width:min(620px,100% - 2rem);background:var(--bg2);color:var(--text);border:1px solid var(--line);border-radius:16px;padding:0;overflow:hidden}
+dialog::backdrop{background:rgba(5,9,14,.7);backdrop-filter:blur(4px)}
+dialog[open]{animation:pop .35s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.98)}}
+.dbody{padding:1.8rem 2rem 2rem}
+.dbody h3{font-size:1.7rem;margin-bottom:.8rem}
+.dbody p{color:var(--muted);margin-bottom:1.2rem}
+.dbody .row{display:flex;gap:.8rem;margin-top:1.5rem;flex-wrap:wrap}
+
+/* cursos */
+.courses{list-style:none;padding:0;border-top:1px solid var(--line);max-width:760px}
+.courses li{display:grid;grid-template-columns:110px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--line)}
+.courses time{color:var(--accent);font:500 .95rem var(--mono)}
+.courses h3{font-size:1.2rem;margin-bottom:.2rem}
+.courses p{color:var(--muted);font-size:.98rem}
+
+/* contato */
+.contact{text-align:left}
+.mail{display:inline-block;font:700 clamp(1.5rem,4.6vw,3.2rem)/1.15 var(--display);letter-spacing:-.02em;border-bottom:2px solid var(--line);padding-bottom:.3rem;transition:border-color .3s,color .3s;word-break:break-all}
+.mail:hover{border-color:var(--accent);color:var(--accent)}
+.social{display:flex;gap:.9rem;flex-wrap:wrap;margin-top:2.5rem}
+footer{padding:2rem 0;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+
+/* revelação ao rolar (só seções) */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:860px){
+  section{padding:4.5rem 0}
+  .hero .wrap,.about .wrap{grid-template-columns:1fr;gap:2.5rem}
+  .photo{max-width:340px;aspect-ratio:1}
+  .services{grid-template-columns:1fr}
+  .service,.service:not(:first-child){padding:1.6rem 0;border-right:0;border-bottom:1px solid var(--line)}
+  .skills{grid-template-columns:1fr}
+  .sk,.sk:not(:first-child){padding:1.6rem 0;border-right:0;border-bottom:1px solid var(--line)}
+  .grid{grid-template-columns:1fr}
+  .menu{display:block}
+  .links{position:absolute;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--bg2);border-bottom:1px solid var(--line);display:none}
+  .links.open{display:flex}
+  .links a{display:block;padding:1rem 1.5rem}
+  .courses li{grid-template-columns:1fr;gap:.3rem}
+  .term{font-size:.85rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .hero h1 .l i{transform:none}.hero p.lead,.hero .cta,.photo,.rv,.term .ln{opacity:1;transform:none}.photo::after,.cur{display:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header id="top">
+  <div class="wrap nav">
+    <a href="#inicio" class="logo">gabriel<span>.</span>luis</a>
+    <button class="menu" aria-label="Abrir menu" aria-expanded="false">Menu</button>
+    <ul class="links">
+      <li><a href="#servicos">Serviços</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#seguranca">Segurança</a></li>
+      <li><a href="#projetos">Projetos</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow"><span id="typed"></span><span class="cur"></span></p>
+      <h1><span class="l"><i>Eu transformo ideias</i></span><span class="l"><i>em sites, lojas e</i></span><span class="l"><i>sistemas que funcionam.</i></span></h1>
+      <p class="lead">Sou o Gabriel, desenvolvedor e dono de uma agência que ajuda empresas locais a aparecerem no Google, venderem online e organizarem o dia a dia, sempre com a segurança em mente.</p>
+      <div class="cta">
+        <a href="#contato" class="btn main">Fale comigo</a>
+        <a href="#projetos" class="btn">Ver projetos</a>
+      </div>
+    </div>
+    <div class="photo"><img src="imagem/minha imagem2.png" alt="Foto de Gabriel Luis" onerror="this.remove()"></div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="wrap rv">
+    <h2 data-n="// 01 servicos">O que eu faço</h2>
+    <div class="services">
+      <div class="service"><h3>Sites</h3><p>Sites rápidos e bonitos no celular e no computador, feitos para o cliente entender o que você vende e chamar no WhatsApp.</p></div>
+      <div class="service"><h3>Lojas online</h3><p>Lojas com catálogo, pedidos e painel de administração para você gerenciar produtos e envios sozinho.</p></div>
+      <div class="service"><h3>Google e redes sociais</h3><p>Configuração e otimização do Google Meu Negócio, tráfego pago e Instagram mais atrativo para trazer clientes da sua região.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="wrap rv">
+    <div class="pic"><img src="imagem/minha imagem.png" alt="Gabriel Luis" onerror="this.remove()"></div>
+    <div>
+      <h2 data-n="// 02 sobre">Muito prazer, sou o Gabriel Luis</h2>
+      <p>Comecei cedo na tecnologia e hoje uso inteligência artificial como ferramenta para criar mais rápido, sem abrir mão de revisar e entender cada detalhe do que entrego.</p>
+      <p>Tenho uma agência que atende negócios locais como salões, barbearias e clínicas. Cuido do perfil no Google, do site e das redes, para o cliente encontrar a empresa e entrar em contato.</p>
+      <div class="facts">
+        <div><b>19 anos</b><span>criando para a web</span></div>
+        <div><b>Negócios locais</b><span>foco da agência</span></div>
+        <div><b>Cibersegurança</b><span>meu foco</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="habilidades">
+  <div class="wrap rv">
+    <h2 data-n="// 03 stack">Habilidades e ferramentas</h2>
+    <div class="skills" id="skills"></div>
+  </div>
+</section>
+
+<section id="seguranca">
+  <div class="wrap rv">
+    <h2 data-n="// 04 seguranca">Segurança em tudo que eu crio</h2>
+    <p class="term-note">Meu foco é cibersegurança. Um site bonito que não protege os dados do cliente não serve. Por isso levo estas práticas para cada projeto:</p>
+    <div class="term" role="img" aria-label="Lista de práticas de segurança aplicadas aos projetos">
+      <div class="bar"><i></i><i></i><i></i><span>seguranca.sh</span></div>
+      <div class="tb" id="sec"></div>
+    </div>
+  </div>
+</section>
+
+<section id="projetos">
+  <div class="wrap rv">
+    <h2 data-n="// 05 projetos">Projetos que já criei</h2>
+    <div class="grid" id="projects"></div>
+  </div>
+</section>
+
+<section id="cursos" class="about" style="border-bottom:0">
+  <div class="wrap rv" style="display:block">
+    <h2 data-n="// 06 cursos">Cursos e formações</h2>
+    <ul class="courses" id="courses"></ul>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap rv contact">
+    <h2 data-n="// 07 contato">Vamos tirar sua ideia do papel?</h2>
+    <a class="mail" href="gabrielcnt124@gmail.com">Gabrielcnt124@gmail.com</a>
+    <div class="social">
+      <a class="btn main" href="https://wa.me/5511948885800" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn" href="https://instagram.com/GaabLuis__" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn" href="https://linkedin.com/in/gabriel-luis-canuto-b1a05a2a8" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap">© <span id="y"></span> Gabriel Luis. Todos os direitos reservados.</div></footer>
+
+<dialog id="dlg">
+  <div class="thumb" id="dthumb"></div>
+  <div class="dbody">
+    <h3 id="dtitle"></h3><p id="ddesc"></p><div class="tags" id="dtags"></div>
+    <div class="row"><a class="btn main" id="dlink" target="_blank" rel="noopener">Ver projeto</a><button class="btn" id="dclose">Fechar</button></div>
+  </div>
+</dialog>
+
+<script>
+/* ====== EDITE AQUI: seus projetos e cursos ======
+   img: caminho de uma imagem (ex: "imagem/projeto1.png"). Se deixar vazio, aparece um fundo colorido.
+   link: endereço do projeto no ar. Se deixar vazio, o botão "Ver projeto" some. */
+const PROJECTS = [
+  {title:"Vink Agenda", desc:"SaaS de agendamento online para negócios que atendem com horário marcado, como salões, barbearias e clínicas. Clientes escolhem o horário e o dono acompanha a agenda.", tags:["SaaS","Agendamento","IA"], img:"imagem/Vinka Agenda.png", link:"https://agendyia.lovable.app/", hue:215},
+  {title:"Loja de roupas online", desc:"Loja virtual com catálogo e painel de administração real para gerenciar pedidos, notas de envio e produtos.", tags:["E-commerce","Painel admin","WordPress"], img:"imagem/Site Ecomercce Ta Na Cena!.png", link:"", hue:265},
+  {title:"Jogo De Bilhar Em Js", desc:"Jogo de bilhar desenvolvido com JavaScript, HTML e CSS para praticar lógica de programação, movimentação de objetos e interatividade.", tags:["Jogo","JavaScript"], img:"imagem/Jogo Bilhar .png", link:"https://jogobilhar.netlify.app/", hue:170},
+  {title:"Bot Whatsapp", desc:"Bot de automação desenvolvido em Python para envio automático de mensagens pelo WhatsApp Web, utilizando uma lista de contatos captados por outro bot.", tags:["Python","Automação","pyautogui"], img:"imagem/Bot Whatsapp .png", link:"https://github.com/GabrielLuisCanuto/Mensagem-automatica-bot", hue:30}
+];
+const COURSES = [
+  {year:"2025", name:"Curso Técnico Análise e Desenvolvimento de Sistema", place:"Sequencial/Governo Estadual"},
+  {year:"2026", name:"Administrando Banco De Dados", place:"Fundação Bradesco"},
+  {year:"2025", name:"Santander - Cibersegurança do Zero a prática", place:"Dio - Cursando"}
+];
+const SKILLS = [
+  {title:"Desenvolvimento", desc:"A base para criar sites e sistemas.", items:[["HTML","html"],["CSS","css"],["JavaScript","javascript"],["Python","python"],["WordPress","wordpress"]]},
+  {title:"Inteligência artificial", desc:"Ferramentas que uso para criar mais rápido.", items:[["Claude","claude"],["OpenAI","openai"],["Lovable","lovable"],["Antigravity","antigravity"]]},
+  {title:"Marketing digital", desc:"O que faço pelos negócios dos clientes.", items:[["Google Meu Negócio","google-meu-negocio"],["Tráfego pago","google-ads"],["Social media","social-media"],["Instagram","instagram"]]}
+];
+const SECURITY = [
+  "HTTPS e certificado ativos em todos os sites",
+  "Login protegido e acesso por perfil no painel administrativo",
+  "Senhas e chaves secretas fora do código público",
+  "Atualizações e backups em dia",
+  "Revisão do código gerado por IA antes de publicar"
+];
+/* ================================================= */
+
+const $ = s => document.querySelector(s);
+$("#skills").innerHTML = SKILLS.map(s=>`<div class="sk"><h3>${s.title}</h3><p>${s.desc}</p><div class="chips">${s.items.map(([n,f])=>`<span class="chip"><i class="ic"><img src="imagem/logos/${f}.png" alt="" width="30" height="30" loading="lazy"></i>${n}</span>`).join("")}</div></div>`).join("");
+const dlg = $("#dlg");
+
+function thumb(p, big){
+  const bg = `linear-gradient(135deg,hsl(${p.hue},55%,32%),hsl(${(p.hue+50)%360},60%,20%))`;
+  const img = p.img ? `<img src="${p.img}" alt="Imagem do projeto ${p.title}" loading="lazy">` : `<div class="ph">${p.title.charAt(0)}</div>`;
+  return `<div class="thumb" style="background:${bg}">${img}</div>`;
+}
+$("#projects").innerHTML = PROJECTS.map((p,i)=>`
+  <button class="proj" data-i="${i}" aria-label="Abrir detalhes de ${p.title}">
+    ${thumb(p)}
+    <div class="info"><h3>${p.title}</h3><p>${p.desc.split(".")[0]}.</p>
+    <div class="tags">${p.tags.map(t=>`<span>${t}</span>`).join("")}</div></div>
+  </button>`).join("");
+
+$("#sec").innerHTML = `<div class="ln"><span class="dim">$</span> ./verificar --projeto</div>` + SECURITY.map((t,i)=>`<div class="ln" style="transition-delay:${.35+i*.2}s"><span class="ok">[ok]</span> ${t}</div>`).join("") + `<div class="ln" style="transition-delay:${.35+SECURITY.length*.2}s"><span class="dim">$</span> <span class="cur"></span></div>`;
+$("#courses").innerHTML = COURSES.map(c=>`<li><time>${c.year}</time><div><h3>${c.name}</h3><p>${c.place}</p></div></li>`).join("");
+
+document.querySelectorAll(".proj").forEach(b=>b.addEventListener("click",()=>{
+  const p = PROJECTS[b.dataset.i];
+  $("#dthumb").outerHTML = thumb(p).replace('class="thumb"','class="thumb" id="dthumb"');
+  $("#dtitle").textContent = p.title; $("#ddesc").textContent = p.desc;
+  $("#dtags").innerHTML = p.tags.map(t=>`<span>${t}</span>`).join("");
+  const l = $("#dlink"); p.link ? (l.href=p.link,l.style.display="") : l.style.display="none";
+  dlg.showModal();
+}));
+$("#dclose").onclick = ()=>dlg.close();
+dlg.addEventListener("click",e=>{ if(e.target===dlg) dlg.close(); });
+
+/* header, progresso e link ativo */
+const hdr = $("#top"), bar = $("#progress"), secs = [...document.querySelectorAll("main section[id]")], links = [...document.querySelectorAll(".links a")];
+function onScroll(){
+  const h = document.documentElement, max = h.scrollHeight - innerHeight;
+  bar.style.transform = `scaleX(${max>0 ? scrollY/max : 0})`;
+  hdr.classList.toggle("scrolled", scrollY>20);
+  let cur = ""; secs.forEach(s=>{ if(scrollY >= s.offsetTop-160) cur = s.id; });
+  links.forEach(a=>a.classList.toggle("on", a.getAttribute("href")==="#"+cur));
+}
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+
+/* menu mobile */
+const menu = document.querySelector(".menu"), ul = document.querySelector(".links");
+menu.onclick = ()=>{ const o = ul.classList.toggle("open"); menu.setAttribute("aria-expanded", o); };
+links.forEach(a=>a.addEventListener("click",()=>{ ul.classList.remove("open"); menu.setAttribute("aria-expanded","false"); }));
+
+/* efeito 3D nas etiquetas de habilidades */
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches){
+  document.querySelectorAll(".chip").forEach(c=>{
+    c.addEventListener("pointermove",e=>{
+      const r=c.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+      c.style.transform=`rotateX(${-y*22}deg) rotateY(${x*26}deg) translateY(-2px)`;
+    });
+    c.addEventListener("pointerleave",()=>c.style.transform="");
+  });
+}
+
+/* digitação do terminal no início */
+const TXT = "gabriel@luis:~$ whoami > dev web e cibersegurança";
+if(matchMedia("(prefers-reduced-motion:reduce)").matches){ $("#typed").textContent = TXT; }
+else{ let k=0; setTimeout(function t(){ $("#typed").textContent = TXT.slice(0,++k); if(k<TXT.length) setTimeout(t,45); },500); }
+
+/* luz que segue o mouse no início */
+const hero = document.querySelector(".hero");
+hero.addEventListener("pointermove",e=>{
+  const r = hero.getBoundingClientRect();
+  hero.style.setProperty("--mx",(e.clientX-r.left)+"px"); hero.style.setProperty("--my",(e.clientY-r.top)+"px");
+});
+
+/* revelar seções ao rolar */
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+
+$("#y").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
